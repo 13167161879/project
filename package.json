@@ -10,7 +10,7 @@
         "setup": "max setup",
         "start": "npm run dev"
     },
-    "homepage": "https://13167161879.github.io/zhangmingtest",
+    "homepage": "https://13167161879.github.io/zhangmingTest",
     "dependencies": {
         "@ant-design/icons": "^5.0.1",
         "@ant-design/pro-components": "^2.0.1",
