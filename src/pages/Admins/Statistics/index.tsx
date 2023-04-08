@@ -1,76 +1,67 @@
-import React from 'react';
-import MyEcharts from 'echarts'
+import { Line } from '@ant-design/charts';
+import React, { useState, useEffect } from 'react';
 
 
-export default () => {
+const Page: React.FC = () => {
+  const data = [
+    { year: '2009', value: 3 },
+    { year: '2010', value: 4 },
+    { year: '2011', value: 3.5 },
+    { year: '2012', value: 5 },
+    { year: '2013', value: 4.9 },
+    { year: '2014', value: 3 },
+    { year: '2015', value: 3.4 },
+    { year: '2016', value: 3.6 },
+    { year: '2017', value: 4.1 },
+    { year: '2018', value: 4.2 },
+    { year: '2019', value: 4.3},
+    { year: '2020', value: 4.4 },
+    { year: '2021', value: 4.5 },
+    { year: '2022', value: 4.1 },
+    { year: '2023', value: 4.9},
+  ];
 
+  const config = {
+    data,
+    xField: 'year',
+    yField: 'value',
+    point: {
+      size: 5,
+      shape: 'diamond',
+    },
+  };
 
-    // const data = [];
-    // for (let i = 0; i < 5; ++i) {
-    //     data.push(Math.round(Math.random() * 200));
-    // }
-    // let option = {
-    //     legend: {},
-    //     tooltip: {},
-    //     dataset: {
-    //         source: [
-    //             ['product', '2012', '2013', '2014', '2015'],
-    //             ['Matcha Latte', 41.1, 30.4, 65.1, 53.3],
-    //             ['Milk Tea', 86.5, 92.1, 85.7, 83.1],
-    //             ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4]
-    //         ]
-    //     },
-    //     xAxis: [
-    //         { type: 'category', gridIndex: 0 },
-    //         { type: 'category', gridIndex: 1 }
-    //     ],
-    //     yAxis: [{ gridIndex: 0 }, { gridIndex: 1 }],
-    //     grid: [{ bottom: '55%' }, { top: '55%' }],
-    //     series: [
-    //         // These series are in the first grid.
-    //         { type: 'bar', seriesLayoutBy: 'row' },
-    //         { type: 'bar', seriesLayoutBy: 'row' },
-    //         { type: 'bar', seriesLayoutBy: 'row' },
-    //         // These series are in the second grid.
-    //         { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-    //         { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-    //         { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-    //         { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 }
-    //     ]
-    // };
+  const [datas, setDatas] = useState([]);
 
-    return <div style={{ height: 500, width: 500 }}> 
-    <MyEcharts
-        option={
-            {
-                    legend: {},
-                    tooltip: {},
-                    dataset: {
-                        source: [
-                            ['product', '2012', '2013', '2014', '2015'],
-                            ['Matcha Latte', 41.1, 30.4, 65.1, 53.3],
-                            ['Milk Tea', 86.5, 92.1, 85.7, 83.1],
-                            ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4]
-                        ]
-                    },
-                    xAxis: [
-                        { type: 'category', gridIndex: 0 },
-                        { type: 'category', gridIndex: 1 }
-                    ],
-                    yAxis: [{ gridIndex: 0 }, { gridIndex: 1 }],
-                    grid: [{ bottom: '55%' }, { top: '55%' }],
-                    series: [
-                        // These series are in the first grid.
-                        { type: 'bar', seriesLayoutBy: 'row' },
-                        { type: 'bar', seriesLayoutBy: 'row' },
-                        { type: 'bar', seriesLayoutBy: 'row' },
-                        // These series are in the second grid.
-                        { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-                        { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-                        { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-                        { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 }
-                    ]
-                }
-        }
-    /></div>
-}
+  const asyncFetch = () => {
+    fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
+      .then((response) => response.json())
+      .then((json) => setDatas(json))
+      .catch((error) => {
+        console.log('fetch data failed', error);
+      });
+  };
+  const configs = {
+    data:datas,
+    padding: 'auto',
+    xField: 'Date',
+    yField: 'scales',
+    xAxis: {
+      tickCount: 5,
+    },
+    slider: {
+      start: 0.1,
+      end: 0.5,
+    },
+  };
+  useEffect(() => {
+    asyncFetch();
+  }, [])
+  return <div>
+      <h3>全校教师评级平均分统计</h3>
+      <Line {...config} />
+      <h3>全校学生人数统计</h3>
+      <Line {...configs} />;
+  </div>;
+};
+export default Page;

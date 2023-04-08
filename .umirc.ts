@@ -1,5 +1,6 @@
 import { defineConfig } from '@umijs/max';
-import routes from './src/route/index'
+import routes from './src/route/index';
+
 export default defineConfig({
   antd: {},
   access: {},

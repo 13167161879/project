@@ -8,11 +8,16 @@ import {
     LoginForm  } from '@ant-design/pro-components';
   import {  Space } from 'antd';
   
+  
 
   export default () => {
-
     const onFinish=()=>{
-        history.push('/student/baseInfo')
+      const type=location.pathname.split('/')[1];
+      if(type==='admins'){
+        history.push('/admins/managementStudent')
+        return 
+      }
+        history.push(`/${type}/baseInfo`)
     }
       return (
         <>

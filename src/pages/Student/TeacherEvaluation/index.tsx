@@ -24,8 +24,8 @@ export default () => {
   return <>
   <Row  gutter={24}>
       
-  <Col offset={6}>
-  <h3>请对教师进行评级</h3>
+  <Col offset={4}>
+  <h3>请对教师进行评分</h3>
   </Col>
   </Row>
   <Form
@@ -38,7 +38,7 @@ export default () => {
         <Input placeholder='请输入老师名称' />
       </Form.Item>
     <Form.Item name="level" label="评分等级" required>
-      <Rate />
+      <Rate allowHalf count={10} />
     </Form.Item>
     <Form.Item name="desc" label="描述" >
       <Input.TextArea placeholder='请输入描述'  />

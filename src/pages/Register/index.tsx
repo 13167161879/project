@@ -21,11 +21,11 @@ const { Option } = Select;
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 11 },
+    sm: { span: 8,offset:2},
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 },
+    sm: { span: 5,  },
   },
 };
 
@@ -33,11 +33,11 @@ const tailFormItemLayout = {
   wrapperCol: {
     xs: {
       span: 24,
-      offset: 0,
+      offset: 2,
     },
     sm: {
       span: 16,
-      offset: 8,
+      offset: 10,
     },
   },
 };
@@ -66,13 +66,12 @@ const App: React.FC = () => {
     <>
     <h1 style={{display:'flex',justifyContent:'center',alignItem:'center'}}>注册</h1>
     <Form
-    // style={{width:'100%'}}
+    style={{width:'100%'}}
           {...formItemLayout}
           form={form}
           name="register"
           onFinish={onFinish}
-          initialValues={{ residence: ['zhejiang', 'hangzhou', 'xihu'], prefix: '86' }}
-          style={{ maxWidth: 600 }}
+          initialValues={{  }}
           scrollToFirstError
       >
 
